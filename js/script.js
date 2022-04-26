@@ -19,7 +19,7 @@ startBtn.addEventListener('click', mainGame);
  * Description: is the function that regulates the game logic and the game screen according to the user's click
  */
 function mainGame() {
-    let score = 0;
+    score = 0;
     instructions.classList.add('d-none');
     finalResult.classList.add('d-none');
     endTitle.innerHTML = '';
