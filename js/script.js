@@ -2,15 +2,20 @@ const gridContainer = document.querySelector('.grid-container');
 const startBtn = document.getElementById('start-btn');
 const instructions = document.querySelector('.instructions');
 const difficultySelect = document.getElementById('difficulty-select');
+const finalResult = document.getElementById('final-result');
+const endTitle = finalResult.querySelector('h2');
 const numberOfBombs = 16;
 
 let max = 100;
 
-let score = 0;
+let endMessage = '';
 
 startBtn.addEventListener('click',
     function() {
+        let score = 0;
         instructions.classList.add('d-none');
+        finalResult.classList.add('d-none');
+        endTitle.innerHTML = '';
         gridContainer.innerHTML = '';
         gridContainer.classList.remove('d-none');
         let gameMode = difficultySelect.value;
@@ -52,15 +57,25 @@ startBtn.addEventListener('click',
                 function() {
                     if (bombArray.includes(i)) {
                         this.classList.add('bomb');
-                        console.log('Hai perso! Il tuo punteggio è di: '+score);  
-                    } else if (score >= max - numberOfBombs) {
-                        this.classList.add('active');
-                        console.log('Complimenti, hai vinto!!!');
+                        endMessage = 'Hai perso! Il tuo punteggio è di: '+score;
+                        finalResult.classList.remove('d-none');
+                        endTitle.classList.remove('text-green');
+                        endTitle.classList.add('text-red');
                     } else {
-                        this.classList.add('active')
+                        this.classList.add('active', 'no-pointer-events');
                         console.log(this);
                         score++;
                     }
+
+                    if (score >= (max - numberOfBombs)) {
+                        endMessage = 'Complimenti, hai vinto!!! Il tuo punteggio è di: '+score;
+                        finalResult.classList.remove('d-none');
+                        endTitle.classList.remove('text-red');
+                        endTitle.classList.add('text-green');
+                    } 
+
+                    endTitle.innerHTML = endMessage;
+                    console.log(score);
                 }
             )
 
