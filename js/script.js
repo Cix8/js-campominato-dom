@@ -68,7 +68,7 @@ startBtn.addEventListener('click',
                     }
 
                     if (score >= (max - numberOfBombs)) {
-                        endMessage = 'Complimenti, hai vinto!!! Il tuo punteggio è di: '+score;
+                        endMessage = 'Complimenti, hai raggiunto il punteggio massimo di: '+score+'. Hai vinto!!!';
                         finalResult.classList.remove('d-none');
                         endTitle.classList.remove('text-red');
                         endTitle.classList.add('text-green');
