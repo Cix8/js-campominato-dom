@@ -17,6 +17,10 @@ html {
     background-color: #6495ed;
 }
 
+.bomb {
+    background-color: red;
+}
+
 .general-container {
     width: 100%;
     height: 100vh;

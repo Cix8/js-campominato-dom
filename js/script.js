@@ -2,8 +2,11 @@ const gridContainer = document.querySelector('.grid-container');
 const startBtn = document.getElementById('start-btn');
 const instructions = document.querySelector('.instructions');
 const difficultySelect = document.getElementById('difficulty-select');
+const numberOfBombs = 16;
 
 let max = 100;
+
+let score = 0;
 
 startBtn.addEventListener('click',
     function() {
@@ -25,6 +28,18 @@ startBtn.addEventListener('click',
             classMode = 'crazy-mode';
         }
 
+        const bombArray = [];
+
+        while (bombArray.length < numberOfBombs) {
+            const rndNumber = getRndInteger(1, max);
+            console.log(rndNumber);
+            if (!bombArray.includes(rndNumber)) {
+                bombArray.push(rndNumber);
+            }
+        }
+
+        console.log(bombArray);
+
         for (let i = 1; i <= max; i++) {
             const newElement = document.createElement('div');
             newElement.classList.add('box',classMode);
@@ -35,8 +50,17 @@ startBtn.addEventListener('click',
 
             newElement.addEventListener('click',
                 function() {
-                    this.classList.add('active')
-                    console.log(this);
+                    if (bombArray.includes(i)) {
+                        this.classList.add('bomb');
+                        console.log('Hai perso! Il tuo punteggio è di: '+score);  
+                    } else if (score >= max - numberOfBombs) {
+                        this.classList.add('active');
+                        console.log('Complimenti, hai vinto!!!');
+                    } else {
+                        this.classList.add('active')
+                        console.log(this);
+                        score++;
+                    }
                 }
             )
 
@@ -44,5 +68,12 @@ startBtn.addEventListener('click',
         }
 
         console.log(gridContainer);
+
     }
 )
+
+//  UTILITY-FUNCTIONS
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
