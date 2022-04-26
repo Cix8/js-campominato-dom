@@ -31,6 +31,7 @@ html {
 
 .no-pointer-events {
     pointer-events: none;
+    cursor: auto!important;
 }
 
 .general-container {
@@ -120,4 +121,6 @@ main {
 footer {
     width: 100%;
     height: 50px;
+    padding: 0 200px;
+    line-height: 50px;
 }
