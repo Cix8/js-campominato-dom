@@ -54,7 +54,13 @@ function mainGame() {
         newElement.addEventListener('click',
             function() {
                 if (bombArray.includes(i)) {
-                    this.classList.add('bomb');
+                    for (let j = 0; j < bombArray.length; j++) {
+                        console.log(j);
+                        console.log(bombArray[j]);
+                        const bombBox = document.querySelector('.grid-container div:nth-child('+bombArray[j]+')')
+                        bombBox.classList.add('bomb');
+                        console.log(bombBox);
+                    }
                     endMessage = 'Hai perso! Il tuo punteggio è di: '+score;
                     finalResult.classList.remove('d-none');
                     endTitle.classList.remove('text-green');
